@@ -17,6 +17,12 @@ fastapi = {version = "0.99.1", extras = ["all"]}
 validators = "^0.22.0"
 
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.4"
+pytest-postgresql = "^5.0.0"
+pytest-schema = "^0.1.1"
+pytest-asyncio = "0.21.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
