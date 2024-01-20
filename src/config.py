@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     AUTHJWT_ACCESS_TOKEN_EXPIRES: int
     AUTHJWT_REFRESH_TOKEN_EXPIRES: int
     REDIS_HOST: str
+    REDIS_PORT: int
     REDIS_PASSWORD: str
 
     class Config:
