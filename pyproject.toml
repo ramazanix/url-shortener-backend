@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "url-shortener"
+version = "0.1.0"
+description = ""
+authors = ["ramazanix <ramazanui2002@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+alembic = "^1.13.1"
+asyncpg = "^0.29.0"
+sqlalchemy = "^2.0.25"
+fastapi-jwt-auth = "^0.5.0"
+redis = "^5.0.1"
+passlib = "^1.7.4"
+fastapi = {version = "0.99.1", extras = ["all"]}
+validators = "^0.22.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
