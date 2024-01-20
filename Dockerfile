@@ -7,7 +7,7 @@ RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
 FROM python:3.10
 WORKDIR /url-shortener
 COPY --from=requirements-stage /tmp/requirements.txt /url-shortener/requirements.txt
-COPY .env /url-shortener/.env
+COPY .env.prod /url-shortener/.env
 RUN pip install --no-cache-dir --upgrade -r /url-shortener/requirements.txt
 COPY ./src /url-shortener/src
 COPY ./alembic.ini /url-shortener/alembic.ini
