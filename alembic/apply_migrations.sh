@@ -1,6 +1,6 @@
 #!/bin/sh
 
 # Apply migrations
-sleep 1
+sleep 5
 alembic upgrade head
 exec "$@"
