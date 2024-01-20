@@ -10,7 +10,7 @@ def init_app(init_db=True):
 
     if init_db:
         session_manager.init(settings.DB_URL)
-        RedisClient(settings.REDIS_HOST, settings.REDIS_PASSWORD)
+        RedisClient(settings.REDIS_HOST, settings.REDIS_PORT, settings.REDIS_PASSWORD)
 
         @asynccontextmanager
         async def lifespan(app: FastAPI):
