@@ -14,7 +14,9 @@ class SingleTon(type):
 
 class RedisClient(metaclass=SingleTon):
     def __init__(self, host="localhost", port=6379, password=None):
-        self.pool = ConnectionPool(host=host, password=password, decode_responses=True)
+        self.pool = ConnectionPool(
+            host=host, password=password, port=port, decode_responses=True
+        )
         self.port = port
 
     @property
