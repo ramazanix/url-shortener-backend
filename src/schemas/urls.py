@@ -27,7 +27,12 @@ class UrlSchema(BaseModel):
     id: UUID4
     full_name: str
     short_name: str
+    created_at: str
     user_id: UUID4
+
+    @validator("created_at", pre=True)
+    def parse_date(cls, value):
+        return datetime.strftime(value, "%X %d.%m.%Y %Z")
 
     class Config:
         orm_mode = True
