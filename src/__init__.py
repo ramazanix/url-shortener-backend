@@ -19,7 +19,7 @@ def init_app(init_db=True):
                 await session_manager.close()
 
     server = FastAPI(
-        title="AutoDP",
+        title="Url Shortener",
         lifespan=lifespan,
         swagger_ui_parameters={"operationsSorter": "alpha"},
     )
