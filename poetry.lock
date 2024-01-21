@@ -871,6 +871,23 @@ pytest = ">=6.2"
 setuptools = "*"
 
 [[package]]
+name = "pytest-redis"
+version = "3.0.2"
+description = "Redis fixtures and fixture factories for Pytest."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "pytest-redis-3.0.2.tar.gz", hash = "sha256:e54660e95fb1ec0feb7426523e37710ac7850380c60f9ee693c4045a6fc28ac5"},
+    {file = "pytest_redis-3.0.2-py3-none-any.whl", hash = "sha256:e2fd39658f396b6ae22976b80f94c61ebda5bc2bb8fe7eabcc7a7f994f7659f8"},
+]
+
+[package.dependencies]
+mirakuru = "*"
+port-for = ">=0.6.0"
+pytest = ">=6.2"
+redis = ">=3"
+
+[[package]]
 name = "pytest-schema"
 version = "0.1.1"
 description = "👍 Validate return values against a schema-like object in testing"
@@ -1505,4 +1522,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "bd2b072bac6da2c88fbed013dc552523914b2256baf7442a9dc0425a3c23c93a"
+content-hash = "4179421485aff4da23edb6144f2046c6e3d2fd4550c2bd626f05b4db4d87f7a1"
