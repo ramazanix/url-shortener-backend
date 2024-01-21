@@ -1,11 +1,12 @@
 import asyncio
 from contextlib import ExitStack
 import pytest_asyncio
-from src import init_app
+from src import init_app, settings
 from src.db import get_db, session_manager
 from httpx import AsyncClient
 from pytest_postgresql import factories as pg_factories
 from pytest_postgresql.janitor import DatabaseJanitor
+from pytest_redis import factories as redis_factories
 
 
 user_data = {"username": "username", "password": "password"}
@@ -24,6 +25,9 @@ async def client(app):
 
 
 test_db = pg_factories.postgresql_proc(dbname="test_db", port=None)
+test_redis = redis_factories.redis_proc(
+    port=settings.REDIS_PORT, password=settings.REDIS_PASSWORD
+)
 
 
 @pytest_asyncio.fixture(scope="session")
@@ -34,7 +38,7 @@ def event_loop():
 
 
 @pytest_asyncio.fixture(scope="session", autouse=True)
-async def connection_test(test_db, event_loop):
+async def connection_test(test_db, test_redis, event_loop):
     pg_host = test_db.host
     pg_port = test_db.port
     pg_user = test_db.user
