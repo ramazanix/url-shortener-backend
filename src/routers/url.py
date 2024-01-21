@@ -43,6 +43,9 @@ async def create_url_custom(
     db: Annotated[AsyncSession, Depends(get_db)],
     authorize: Annotated[Auth, Depends(auth_checker)],
 ):
+    if not is_valid_url(url.full_name):
+        raise HTTPException(status_code=400, detail="Not valid url")
+
     if not is_valud_slug(url.short_name):
         raise HTTPException(status_code=400, detail="Not valid slug")
 
@@ -76,6 +79,16 @@ async def update_url(
 
         if another_url:
             raise HTTPException(status_code=400, detail="Url occupied")
+
+        if not is_valud_slug(payload.short_name):
+            raise HTTPException(status_code=400, detail="Not valid slug")
+
+    if (
+        new_url_data.get("full_name")
+        and existed_custom_url.full_name != payload.full_name
+    ):
+        if not is_valid_url(payload.full_name):
+            raise HTTPException(status_code=400, detail="Not valid url")
 
     return await update_custom(db, payload, existed_custom_url)
 
