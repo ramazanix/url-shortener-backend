@@ -10,6 +10,8 @@ from pytest_redis import factories as redis_factories
 
 
 user_data = {"username": "username", "password": "password"}
+url_default_data = {"full_name": "https://example.com"}
+url_custom_data = {"full_name": "https://example.com", "short_name": "example-url"}
 
 
 @pytest_asyncio.fixture(autouse=True)
@@ -86,3 +88,19 @@ async def authorize(client: AsyncClient):
 @pytest_asyncio.fixture
 async def authorization_header(authorize):
     return {"Authorization": f'Bearer {authorize["access_token"]}'}
+
+
+@pytest_asyncio.fixture
+async def create_default_url(client: AsyncClient, authorization_header):
+    response = await client.post(
+        "/urls/default", json=url_default_data, headers=authorization_header
+    )
+    return response.json()
+
+
+@pytest_asyncio.fixture
+async def create_custom_url(client: AsyncClient, authorization_header):
+    response = await client.post(
+        "/urls/custom", json=url_custom_data, headers=authorization_header
+    )
+    return response.json()
