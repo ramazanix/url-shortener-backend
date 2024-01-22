@@ -1,4 +1,4 @@
-url_base = {"full_name": str, "short_name": str}
+url_base = {"full_name": str, "short_name": str, "created_at": str}
 url = {
     "id": str,
     "full_name": str,
