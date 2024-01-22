@@ -5,6 +5,11 @@ from datetime import datetime
 class UrlSchemaBase(BaseModel):
     full_name: str
     short_name: str
+    created_at: str
+
+    @validator("created_at", pre=True)
+    def parse_date(cls, value):
+        return datetime.strftime(value, "%X %d.%m.%Y %Z")
 
     class Config:
         orm_mode = True
