@@ -110,7 +110,7 @@ async def delete_url(
     return await delete(db, db_url)
 
 
-@urls_router.get("/{short_name}", response_model=UrlSchemaBase)
+@urls_router.get("/{short_name}", response_model=UrlSchema)
 async def get_full_name(short_name: str, db: Annotated[AsyncSession, Depends(get_db)]):
     url = await get_by_short_name(db, short_name)
     if not url:
