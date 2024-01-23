@@ -6,7 +6,7 @@ from ..conftest import (
     create_default_url,
     authorization_header,
 )
-from ..urls.schemas import url_base
+from ..urls.schemas import url_base, url
 
 
 @pytest.mark.asyncio
@@ -18,7 +18,7 @@ async def test_read_url_unauthorized(
     """
     response = await client.get(f"/urls/{create_default_url['short_name']}")
     assert response.status_code == 200
-    assert response.json() == exact_schema(url_base)
+    assert response.json() == exact_schema(url)
 
 
 @pytest.mark.asyncio
@@ -30,4 +30,4 @@ async def test_read_url_authorized(
     """
     response = await client.get(f"/urls/{create_default_url['short_name']}")
     assert response.status_code == 200
-    assert response.json() == exact_schema(url_base)
+    assert response.json() == exact_schema(url)
